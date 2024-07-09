@@ -7,26 +7,31 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health;
     public float maxHealth;
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Bullet")
+        // Check if the collision object has the "Bullet" tag
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             health--;
+            Debug.Log("Hit by bullet");
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }
-        Debug.Log("hit");
     }
+
     // Update is called once per frame
     void Update()
     {
-        if (health < 0) 
+        if (health <= 0)
         {
-            Debug.Log("dead");
-
+            Debug.Log("Player is dead");
+            // Here you can add code to handle player death, like triggering a game over event, etc.
         }
     }
 }
