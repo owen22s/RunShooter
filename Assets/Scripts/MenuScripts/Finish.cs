@@ -6,13 +6,26 @@ using UnityEngine.SceneManagement;
 public class Finish : MonoBehaviour
 {
     public GameObject finishUI;
-    // Start is called before the first frame update
+
+    // Called when the player enters the finish trigger
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")) { 
+        if (other.gameObject.CompareTag("Player"))
+        {
             finishUI.SetActive(true);
             Debug.Log(other);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            // Get the current level
+            int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+
+            // Increment the level
+            currentLevel++;
+
+            // Save the new level
+            PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+
+            // Load the next level
+            SceneManager.LoadScene("Level" + currentLevel);
         }
     }
 }
