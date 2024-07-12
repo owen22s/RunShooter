@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health;
     public float maxHealth;
+    public GameObject Deathloc;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
+            health = 0;
             Debug.Log("Player is dead");
+            transform.position = Deathloc.transform.position;
             // Here you can add code to handle player death, like triggering a game over event, etc.
         }
     }
