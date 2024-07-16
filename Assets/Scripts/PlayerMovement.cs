@@ -9,23 +9,29 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5.0f;
     public Transform playerCamera;
     public float cameraClamp = 85.0f;
+    public float crouchHeight = 1.0f;
+    public float crouchSpeed = 2.0f;
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float verticalVelocity = 0.0f;
     private float gravity = 9.8f;
     private float cameraVerticalAngle = 0.0f;
+    private float originalHeight;
+    private bool isCrouching = false;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        originalHeight = characterController.height;
     }
 
     void Update()
     {
         HandleMovement();
         HandleMouseLook();
+        HandleCrouch();
     }
 
     void HandleMovement()
@@ -71,5 +77,20 @@ public class PlayerMovement : MonoBehaviour
         cameraVerticalAngle -= mouseY;
         cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -cameraClamp, cameraClamp);
         playerCamera.localEulerAngles = Vector3.right * cameraVerticalAngle;
+    }
+
+    void HandleCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            isCrouching = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            isCrouching = false;
+        }
+
+        float targetHeight = isCrouching ? crouchHeight : originalHeight;
+        characterController.height = Mathf.Lerp(characterController.height, targetHeight, Time.deltaTime * crouchSpeed);
     }
 }

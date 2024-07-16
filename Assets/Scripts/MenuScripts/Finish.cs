@@ -15,17 +15,7 @@ public class Finish : MonoBehaviour
             finishUI.SetActive(true);
             Debug.Log(other);
 
-            // Get the current level
-            int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
-
-            // Increment the level
-            currentLevel++;
-
-            // Save the new level
-            PlayerPrefs.SetInt("CurrentLevel", currentLevel);
-
-            // Load the next level
-            SceneManager.LoadScene("Level" + currentLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

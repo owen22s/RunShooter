@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2189152806902508106}
   - component: {fileID: 4783198605011488088}
   - component: {fileID: 6628583383940976670}
+  - component: {fileID: 570096831324960779}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -151,6 +152,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902741359687080757}
   m_Mesh: {fileID: -2432090755550338912, guid: 7f6dd86d9cb74f44192b27b9d7b58595, type: 3}
+--- !u!114 &570096831324960779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902741359687080757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9f48a29d6c37d4b93b3a8aeb33d7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onBulletHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7224331798681896972
 GameObject:
   m_ObjectHideFlags: 0

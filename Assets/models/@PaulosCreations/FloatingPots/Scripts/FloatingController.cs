@@ -22,6 +22,21 @@ public class FloatingController : MonoBehaviour
         if (animatePots)
             floatPotsCoroutine = StartCoroutine(FloatPotsAnimation());
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.SetParent(transform);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.SetParent(null);
+        }
+
+    }
 
     private IEnumerator FloatPotsAnimation()
     {
