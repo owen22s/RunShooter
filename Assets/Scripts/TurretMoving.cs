@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretMoving : MonoBehaviour
@@ -10,6 +8,7 @@ public class TurretMoving : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Turret = GameObject.FindWithTag("TurretTag");
         while (MoveRight == true)
         {
             Vector3 newPosition = Turret.transform.position;
